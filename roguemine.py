@@ -319,6 +319,7 @@ soundsPlaying = {
 
 #Sound Playing:
 def play(f,t,v=1.0):
+    return
     global soundsPlaying
     if syst == 'w':
         soundsPlaying[t] = sp.Popen(["powershell","-c",f'(New-Object Media.SoundPlayer "{f}").PlaySync();'], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
