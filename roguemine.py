@@ -14,6 +14,7 @@ from extra_code.invView import viewInventory
 from extra_code.popups import wrongStartBlock, notAfford, moonWindow
 from extra_code.settings import openSettings
 from extra_code.introText import intro
+from extra_code.prices import prc
 
 #Variables:
 if plt.system() == 'Darwin':
@@ -684,11 +685,12 @@ def nextShop(r):
         
         #Pick Random Upgrades:
         choices = []
-        for _ in range(3):
+        while len(choices) < 3:
             choiceExt = ran.randint(0,len(upgrades)-1)
-            choice = upgrades[choiceExt]
-            upgrades.pop(choiceExt)         #remove choice so upgrade can only be shown once per shop
-            choices.append(choice)
+            if prc(upgrades[choiceExt]) <= score or ran.randint(0,9) == 0:
+                choice = upgrades[choiceExt]
+                upgrades.pop(choiceExt)         #remove choice so upgrade can only be shown once per shop
+                choices.append(choice)
         if upgradeInv['🏆'][2] and not upgradeInv['🏆'][0]:
             choices.append('🏆')
         else:
