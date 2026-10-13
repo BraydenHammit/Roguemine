@@ -199,14 +199,22 @@ else: #Using codespace
 scrollIntro = st.ScrolledText(root, wrap=tk.WORD, font = ("Comic Sans MS", 12), width=60, height=20, highlightthickness=2, bg='gray65', highlightbackground="black", relief="flat")
 intro = intro(blockTypes)
 startB =  tk.Button(root, text = 'Start', bg='gray55', command= lambda: startGame())
-key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
-keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
-keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
+try:
+    key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
+    keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
+    keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
+except:
+    key =  tk.Button(root, height=1, width=1, text = 'Gold Key', bg='gray85', command= lambda: keyClick('o'))
+    keyE =  tk.Button(root, height=1, width=1, text = 'Black Key', bg='gray85', command= lambda: keyClick('e'))
+    keyN =  tk.Button(root, height=1, width=1, text = 'Red Key', bg='gray85', command= lambda: keyClick('n'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades\n(300 Score)', bg='gray85', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
+try:
+    upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
+except:
+    upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
 settingsB = tk.Button(root, text='Settings', bg='gray85', fg="gray5", command=lambda: settingsButton(sounds['click']))
 
 images = {
@@ -723,7 +731,10 @@ def nextTime():
     global nextTimer, nextLock
     nextTimer -= 1
     if nextTimer > 0:
-        blocks[15][1].configure(text=f'Next (🔒 {nextTimer})')
+        try:
+            blocks[15][1].configure(text=f'Next (🔒 {nextTimer})')
+        except:
+            blocks[15][1].configure(text=f'Next (Locked: {nextTimer})')
         nextLock = root.after(1000,nextTime)
     else:
         try:

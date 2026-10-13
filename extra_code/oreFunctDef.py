@@ -9,7 +9,10 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         if c == 0:
             button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif c == 1:
-            button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            try:
+                button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            except:
+                button = tk.Button(root, text=f'Next (Locked: {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif c == 2:
             if upgradeInv['Xtime']:
                 button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
@@ -41,7 +44,7 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
             if r <= 8:
                 button = tk.Button(root, image = images['coal'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'coal'))
             else:
-                            button = tk.Button(root, image = images['deepslateCoal'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'coal'))
+                button = tk.Button(root, image = images['deepslateCoal'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'coal'))
         
         elif ore == 'lapis':
             if r <= 8:
