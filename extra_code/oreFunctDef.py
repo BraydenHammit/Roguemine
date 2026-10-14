@@ -103,7 +103,10 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         if (c == 0) and (r == 15):
             button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif (c == 1) and (r == 15):
-            button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            try:
+                button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            except:
+                button = tk.Button(root, text=f'Next (Locked: {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif (r == 15) and (c == 2):
             if upgradeInv['Xtime']:
                 button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
@@ -139,7 +142,10 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
         button = tk.Button(root, text=round(score,2), bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (c == 1) and (r == 15):
-        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        try:
+            button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        except:
+            button = tk.Button(root, text=f'Next (Locked: {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (r == 15) and (c == 2):
         if upgradeInv['Xtime']:
@@ -173,7 +179,10 @@ def defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         button = tk.Button(root, text=round(score,2), bg='#965628', fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (c == 1) and (r == 15):
-        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg="#965628", fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        try:
+            button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#965628', fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        except:
+            button = tk.Button(root, text=f'Next (Locked: {nextTimer})', bg='#965628', fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (r == 15) and (c == 2):
         if upgradeInv['Xtime']:
